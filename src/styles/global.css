@@ -558,6 +558,35 @@ fieldset {
   padding: var(--space-4);
 }
 
+.more-filters > summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-2);
+  color: var(--primary);
+}
+
+.more-filters > summary::after {
+  content: '▸';
+  margin-left: var(--space-2);
+}
+
+.more-filters[open] > summary::after {
+  content: '▾';
+}
+
+.more-filters > summary::-webkit-details-marker {
+  display: none;
+}
+
+.filter-count {
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-left: var(--space-1);
+}
+
 .controls .field--checks legend {
   margin-bottom: var(--space-2);
 }
@@ -1174,13 +1203,17 @@ fieldset {
     position: static;
   }
 
-  .controls {
+  .menu-sidebar {
+    padding: var(--space-3) var(--space-4) var(--space-1);
+  }
+
+  .more-filters[open] {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0 var(--space-3);
   }
 
-  .controls .field--search {
+  .more-filters > summary {
     grid-column: 1 / -1;
   }
 }
@@ -1202,7 +1235,7 @@ fieldset {
     padding: var(--space-5) var(--space-4);
   }
 
-  .controls {
+  .more-filters[open] {
     grid-template-columns: 1fr;
   }
 

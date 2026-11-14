@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ALLERGENS, CATEGORIES } from '../data/menu.js';
 import { capitalise } from '../utils/format.js';
 
@@ -13,6 +14,13 @@ export const SORT_OPTIONS = [
  * (via props) and every change is reported through the onChange callback.
  */
 export default function MenuControls({ filters, onChange, allergies, onAllergiesChange }) {
+  // On phones the full filter panel would push every dish below the first screen,
+  // so it starts collapsed there (search stays visible). Open by default on wider screens.
+  const [showFilters, setShowFilters] = useState(() => window.matchMedia('(min-width: 901px)').matches);
+  const activeCount = [filters.cat !== 'all', filters.sort !== 'popular', filters.avail, filters.veg, filters.safe].filter(
+    Boolean
+  ).length;
+
   function toggleAllergy(allergen) {
     onAllergiesChange(
       allergies.includes(allergen) ? allergies.filter((a) => a !== allergen) : [...allergies, allergen]
@@ -31,6 +39,11 @@ export default function MenuControls({ filters, onChange, allergies, onAllergies
           onChange={(e) => onChange({ q: e.target.value })}
         />
       </div>
+
+      <details className="more-filters" open={showFilters} onToggle={(e) => setShowFilters(e.currentTarget.open)}>
+        <summary>
+          Filters &amp; sort{activeCount > 0 && <span className="filter-count"> ({activeCount} on)</span>}
+        </summary>
 
       <div className="field">
         <label htmlFor="category">Category</label>
@@ -82,6 +95,7 @@ export default function MenuControls({ filters, onChange, allergies, onAllergies
           </label>
         )}
       </fieldset>
+      </details>
     </form>
   );
 }
