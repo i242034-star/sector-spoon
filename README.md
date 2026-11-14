@@ -2,7 +2,7 @@
 
 **Student:** Abdullah kewan_24i-2034_CY-A
 **GitHub:** https://github.com/i242034-star/sector-spoon
-**Live site:** _https://sector-spoon.vercel.app_ (replace after deploying)
+**Live site:** https://sector-spoon.vercel.app
 
 Sector Spoon is a **fictional** cloud kitchen in H-9, Islamabad that cooks home-style meals (pulao, rolls, bowls, desserts) for university students. The React site lets students browse today's menu, search and filter, open a dish, build an order with spice options and quantities, fill in a delivery or pickup form, review a calculated summary and place a **simulated** order.
 
